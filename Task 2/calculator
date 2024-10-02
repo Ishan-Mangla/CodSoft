@@ -1,0 +1,68 @@
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+void displayMenu() {
+    cout << "\n👋 Welcome to the Interactive Calculator! 💻\n";
+    cout << "Choose an operation to perform:\n";
+    cout << "1. ➕ Addition\n";
+    cout << "2. ➖ Subtraction\n";
+    cout << "3. ✖ Multiplication\n";
+    cout << "4. ➗ Division\n";
+    cout << "5. 🚪 Exit\n";
+    cout << "Enter your choice (1-5): ";
+}
+
+void performOperation(int choice, double num1, double num2) {
+    cout << fixed << setprecision(2);  // Setting decimal precision for output
+    switch(choice) {
+        case 1:
+            cout << "\n✨ You chose Addition! Result: " << num1 << " + " << num2 << " = " << num1 + num2 << endl;
+            break;
+        case 2:
+            cout << "\n✨ You chose Subtraction! Result: " << num1 << " - " << num2 << " = " << num1 - num2 << endl;
+            break;
+        case 3:
+            cout << "\n✨ You chose Multiplication! Result: " << num1 << " * " << num2 << " = " << num1 * num2 << endl;
+            break;
+        case 4:
+            if (num2 != 0) {
+                cout << "\n✨ You chose Division! Result: " << num1 << " / " << num2 << " = " << num1 / num2 << endl;
+            } else {
+                cout << "\n⚠ Oops! Division by zero is not allowed.\n";
+            }
+            break;
+        default:
+            cout << "\n⚠ Operation Selected is invalid.\n";
+            break;
+    }
+}
+
+int main() {
+    int choice;
+    double num1, num2;
+
+    do {
+        displayMenu();
+        cin >> choice;
+
+        if (choice == 5) {
+            cout << "\n🚪 Exiting the calculator. See you next time!\n";
+            break;
+        }
+
+        if (choice >= 1 && choice <= 4) {
+            cout << "\nEnter the first number: ";
+            cin >> num1;
+            cout << "Enter the second number: ";
+            cin >> num2;
+
+            performOperation(choice, num1, num2);
+        } else {
+            cout << "\n⚠ Invalid choice! Please select a valid option from 1 to 5.\n";
+        }
+    } while (choice != 5);
+
+    return 0;
+}
